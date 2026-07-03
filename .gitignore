@@ -1,0 +1,31 @@
+# --- Sensitive / non-shareable source data -----------------------------------
+# The raw workbook may contain more than the published aggregates, so it stays
+# out of version control until information-governance approval is confirmed.
+# Ignore everything under data-raw/ EXCEPT the extraction script(s), so the
+# pipeline itself is committed and visible.
+data-raw/*
+!data-raw/*.R
+!data-raw/.gitkeep
+
+# Belt-and-braces: never commit spreadsheets from anywhere in the tree.
+*.xlsx
+*.xls
+
+# The aggregate counts under data/ ARE already published (Tables 1 and 3) and
+# are intended to be committed. If your team prefers to withhold them, move them
+# to data-raw/ instead.
+
+# --- R session / build artefacts ---------------------------------------------
+.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata
+*.Rproj.bak
+
+# --- OS cruft ----------------------------------------------------------------
+.DS_Store
+Thumbs.db
+.Rproj.user
+.Rdata
+.httr-oauth
+.quarto
