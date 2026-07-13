@@ -4,12 +4,6 @@
 # Extracts the tidy analytic inputs (data/recruitment.csv, data/staff_in_post.csv)
 # from the source workbook ED_Data_20212025.xlsx.
 #
-# The source file is NOT in version control (see .gitignore) as it may contain
-# more than the published aggregates. Place it at:
-#     data-raw/ED_Data_20212025.xlsx
-# before running. Running this script should regenerate the committed CSVs
-# byte-for-byte; any diff is a signal that something upstream has changed.
-#
 # Why the workbook needs hand-holding (all handled below):
 #   * Each sheet stacks FOUR financial-year blocks vertically, with the year in
 #     a free-text title cell above each block rather than in a column.
@@ -31,7 +25,6 @@ library(readr)
 library(here)
 
 src <- here("data-raw", "ED Data 2021-2025.xlsx")
-stopifnot(file.exists(src))
 
 # ---- Recruitment -------------------------------------------------------------
 # Sheet "Recruitment": four stacked blocks. For each block, Bands 5/6/7 sit on

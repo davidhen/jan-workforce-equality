@@ -15,17 +15,15 @@ Microsoft Excel.
 The inputs under `data/` are the **aggregate counts already published in the
 manuscript** (Table 1 staff-in-post; Table 3 recruitment). Because every
 estimate derives solely from these published aggregates, the code is fully
-runnable from this repository alone. Any lower-level or identifiable extract is
-**not** included and remains subject to NHS information-governance approval; see
-`.gitignore`.
+runnable from this repository alone. 
 
 ## Structure
 
 ```
 .
-├── data-raw/                 extraction pipeline (raw file gitignored)
+├── data-raw/                 extraction pipeline (raw file)
 │   └── 00_extract_from_source.R
-├── data/                     published aggregate counts (safe to share)
+├── data/                     aggregate counts
 │   ├── recruitment.csv
 │   └── staff_in_post.csv
 ├── R/
@@ -46,17 +44,14 @@ runnable from this repository alone. Any lower-level or identifiable extract is
 source("run_all.R")          # or: Rscript run_all.R
 ```
 
-Dependencies: `dplyr`, `tidyr`, `readr`, `purrr`, `tibble`, `here` (plus
-`readxl` for the extraction step). Developed under R 4.x. (Record your exact
-`sessionInfo()` / renv lockfile before release.)
+Dependencies: `dplyr`, `tidyr`, `readr`, `purrr`, `tibble`, `here`
+`readxl`. Developed under R 4.5.0
 
 ## Regenerating the data from source
 
 `data/` is generated from the source workbook by `data-raw/00_extract_from_source.R`.
-The raw workbook is not committed; to regenerate, place it at
-`data-raw/ED_Data_20212025.xlsx` and run that script. It should reproduce the
-committed CSVs exactly — any diff signals an upstream change. The script keys off
-fixed cell anchors (the sheet stacks four year-blocks with the year in title
+It should reproduce the committed CSVs exactly — any diff signals an upstream change. 
+The script keys off fixed cell anchors (the sheet stacks four year-blocks with the year in title
 cells, interleaves "Grand Total" rows, and carries pre-computed RQs and stray
 secondary counts we deliberately ignore), so it is intentionally explicit rather
 than header-driven.
