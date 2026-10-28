@@ -32,7 +32,8 @@ runnable from this repository alone.
 │   ├── 01_recruitment_rr.R   Table 4: relative risks + 95% CIs + p
 │   ├── 02_representation_rq.R Table 2: representation quotients
 │   ├── 03_sensitivity.R      non-disclosure bound + tipping point
-│   └── 04_verification.R     confirms R reproduces the published values
+│   ├── 04_verification.R     confirms R reproduces the published values
+│   └── 05_continuity_correction.R  p-values with vs without Yates' correction
 ├── outputs/                  generated tables (created on run)
 └── run_all.R
 ```
@@ -69,6 +70,16 @@ than header-driven.
   seniority. `03_sensitivity.R` recomputes RQs under the extreme assumption that
   all PNTS staff are non-White, and reports the tipping point — the fraction of
   PNTS that would need to be non-White for a senior band to reach parity.
+
+## Continuity correction
+
+`05_continuity_correction.R` addresses Reviewer 1's query on Yates' correction.
+The Table 4 p-values use Pearson chi-square without continuity correction. The
+smallest expected cell count in any 2x2 table is 18.0 (Band 7), so the
+small-sample concern behind Yates' correction does not arise. Applying the
+correction raises p-values modestly (largest: 0.016, Band 6 2021/22) and changes
+no inference at alpha = 0.05; the script asserts this. RRs and Katz CIs do not
+depend on the choice of test.
 
 ## Verified results
 

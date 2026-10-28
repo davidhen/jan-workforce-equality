@@ -5,5 +5,6 @@ source(here::here("analysis", "01_recruitment_rr.R"))
 source(here::here("analysis", "02_representation_rq.R"))
 source(here::here("analysis", "03_sensitivity.R"))
 source(here::here("analysis", "04_verification.R"))
+source(here::here("analysis", "05_continuity_correction.R"))
 
 cat("\nDone. Outputs written to ./outputs/\n")
